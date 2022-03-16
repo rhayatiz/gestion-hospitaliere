@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ANON</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link th:href="@{/css/tailwind-2.2.19.min.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="flex flex-row">
+    <nav class="w-16 bg-gray-700 h-screen">
+        <div class="flex flex-col">
+            <div class="mx-auto mt-2 relative"  onmouseover="showButtonTitle(this)" onmouseleave="hideButtonTitle(this)" data-tooltip="accueilTooltip">
+                <a href="#">
+                    <i class="fas fa-home
+                             rounded-xl
+                             p-4 text-gray-100 bg-gray-600
+                             text-lg"></i>
+                </a>
+                <div id="accueilTooltip" class="invisible w-36 bg-gray-800 rounded-md border-1 border-gray-50
+                            absolute p-1.5 top-3.5 left-14 shadow-sm shadow-inner">
+                    <span class="text-gray-50 pl-2">Accueil</span>
+                </div>
+            </div>
+
+
+            <div class="mx-auto mt-2 relative"  onmouseover="showButtonTitle(this)" onmouseleave="hideButtonTitle(this)" data-tooltip="patitentsTooltip">
+                <a href="#">
+                    <i class="fas fa-users
+                             rounded-xl
+                             p-4 text-gray-100 bg-gray-600
+                             text-lg"></i>
+                </a>
+                <div id="patitentsTooltip" class="invisible w-36 bg-gray-800 rounded-md border-1 border-gray-50
+                            absolute p-1.5 top-3.5 left-14 shadow-sm shadow-inner">
+                    <span class="text-gray-50 pl-2">Patients</span>
+                </div>
+            </div>
+
+
+            <div class="mx-auto mt-2 relative"  onmouseover="showButtonTitle(this)" onmouseleave="hideButtonTitle(this)" data-tooltip="dossiersTooltip">
+                <a href="#">
+                    <i class="far fa-file-alt
+                             rounded-xl
+                             p-5 text-gray-100 bg-gray-600
+                             text-lg"></i>
+                </a>
+                <div id="dossiersTooltip" class="invisible w-36 bg-gray-800 rounded-md border-1 border-gray-50
+                            absolute p-1.5 top-3.5 left-14 shadow-sm shadow-inner">
+                    <span class="text-gray-50 pl-2">Dossiers</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <main class="w-full">
+        <div class="user-navbar h-10 bg-gray-400 shadow-md">
+            <div class="flex text-white justify-items-end h-full">
+                <div class="ml-auto my-auto">John Doe</div>
+                <div class="mx-2 my-auto">
+                    <a href="#">Sign out</a>
+                </div>
+            </div>
+        </div>
+        second div here
+    </main>
+
+</div>
+
+<script type="text/javascript" th:src="@{/js/jquery-3.6.0.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
+</body>
+</html>

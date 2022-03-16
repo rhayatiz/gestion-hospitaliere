@@ -1,0 +1,33 @@
+/gestion-hos-back/HELP.md
+/gestion-hos-back/target/
+/gestion-hos-back/!.mvn/wrapper/maven-wrapper.jar
+/gestion-hos-back/!**/src/main/**/target/
+/gestion-hos-back/!**/src/test/**/target/
+
+### STS ###
+/gestion-hos-back/.apt_generated
+/gestion-hos-back/.classpath
+/gestion-hos-back/.factorypath
+/gestion-hos-back/.project
+/gestion-hos-back/.settings
+/gestion-hos-back/.springBeans
+/gestion-hos-back/.sts4-cache
+
+### IntelliJ IDEA ###
+/gestion-hos-back/.idea
+/gestion-hos-back/*.iws
+/gestion-hos-back/*.iml
+/gestion-hos-back/*.ipr
+
+### NetBeans ###
+/gestion-hos-back/nbproject/private/
+/gestion-hos-back/nbbuild/
+/gestion-hos-back/dist/
+/gestion-hos-back/nbdist/
+/gestion-hos-back/.nb-gradle/
+/gestion-hos-back/build/
+/gestion-hos-back!**/src/main/**/build/
+/gestion-hos-back!**/src/test/**/build/
+
+### VS Code ###
+/gestion-hos-back/.vscode/

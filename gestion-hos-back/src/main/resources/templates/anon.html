@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ANON</title>
+
+    <link type="text/css" th:href="@{/js/jquery-3.6.0.min.js}" />
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
+</head>
+<body>
+    <h1 class="text-red-400"
+            th:text="${name} ?
+            'Hello, ' + ${name} + '!' :
+             'Hello There!'">Hello, Anon!</h1>
+</body>
+</html>

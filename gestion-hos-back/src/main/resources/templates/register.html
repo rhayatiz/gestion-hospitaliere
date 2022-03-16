@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TITLE</title>
+
+    <link type="text/css" th:href="@{/js/jquery-3.6.0.min.js}"/>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <!--    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>-->
+</head>
+<body>
+
+<div class="flex justify-center items-center h-screen">
+
+    <div class="login-wrapper
+                rounded-xl px-10 py-8
+                border border-light-blue-800 shadow-md
+                w-50 max-w-screen-lg">
+        <div class="text-blue-500 text-2xl text-center font-light">Inscription</div>
+
+        <form id="registerForm" method="POST" th:action="@{/register}" th:object="${user}" action="#">
+            <div class="relative mt-10">
+                <label class="absolute -top-3 left-2 bg-white px-1 font-light text-gray-800" for="firstName">Prénom</label>
+                <input class="border border-blue-200 focus:border-blue-400 rounded-lg py-2 pl-2 font-light outline-none" type="text" placeholder="firstName" name="firstName" id="firstName" th:field="*{firstName}"/>
+            </div>
+
+            <div class="relative mt-10">
+                <label class="absolute -top-3 left-2 bg-white px-1 font-light text-gray-800" for="lastName">Nom</label>
+                <input class="border border-blue-200 focus:border-blue-400 rounded-lg py-2 pl-2 font-light outline-none" type="text" placeholder="lastName" name="lastName" id="lastName" th:field="*{lastName}"/>
+            </div>
+
+            <div class="relative mt-10">
+                <label class="absolute -top-3 left-2 bg-white px-1 font-light text-gray-800" for="email">Email</label>
+                <input class="border border-blue-200 focus:border-blue-400 rounded-lg py-2 pl-2 font-light outline-none" type="text" placeholder="email" name="email" id="email" th:field="*{email}"/>
+            </div>
+
+            <div class="relative mt-6">
+                <label class="absolute -top-3 left-2 bg-white px-1 font-light" for="date">Date de naissance</label>
+                <input class="border border-blue-200 focus:border-blue-400 rounded-lg py-2 pl-2 font-light outline-none" type="date" name="date" id="date" th:field="*{birthDate}"/>
+            </div>
+
+            <div class="relative mt-6">
+                <label class="absolute -top-3 left-2 bg-white px-1 font-light" for="password">Mot de passe</label>
+                <input class="border border-blue-200 focus:border-blue-400 rounded-lg py-2 pl-2 font-light outline-none" type="password" placeholder="password" name="password" id="password" th:field="*{password}"/>
+            </div>
+
+            <div class="relative mt-6">
+                <label class="absolute -top-3 left-2 bg-white px-1 font-light" for="password">Confirmation</label>
+                <input class="border border-blue-200 focus:border-blue-400 rounded-lg py-2 pl-2 font-light outline-none" type="password" placeholder="passwordConfirm" name="passwordConfirm" id="passwordConfirm"/>
+            </div>
+
+            <div id="passwordError" class="text-red-500 font-light mt-2 hidden">Les deux mots de passe ne correspondent pas</div>
+
+            <button class="text-white bg-blue-500 hover:bg-blue-600 mt-5 w-full font-light py-1 rounded-lg" type="input">Inscription</button>
+
+            <div class="text-center mt-2"><a class="font-light text-blue-400 hover:text-blue-500 underline" href="reset-password">Reset password</a></div>
+            <div class="text-center mt-2 font-light">Déjà inscrit?<a class="text-blue-400 hover:text-blue-500 underline" href="/login">Connexion</a></div>
+
+        </form>
+    </div>
+
+</div>
+
+
+<script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script>
+        document.getElementById('date').value = "2000-01-01";
+        $('#registerForm').on('submit', function(e){
+            e.preventDefault();
+            //Confirmation mot de passe
+            if ( $('#password').val() != $('#passwordConfirm').val()) {
+                $('#passwordError').removeClass("hidden");
+            }else{
+                e.target.submit();
+            }
+        });
+    </script>
+</body>
+</html>
