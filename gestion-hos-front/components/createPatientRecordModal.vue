@@ -5,13 +5,9 @@
       <!-- Form -->
       <form class="p-4">
         <div class="form-row">
-            <div class="form-group col-md-6">
-            <label for="inputEmail4">Nom</label>
-            <input type="text" class="form-control" v-model="record.name" placeholder="Nom">
-            </div>
-            <div class="form-group col-md-6">
-            <label for="inputPassword4">x</label>
-            <input type="text" class="form-control" placeholder="x">
+            <div class="form-group col">
+              <label for="inputEmail4">Nom</label>
+              <input type="text" class="form-control" v-model="record.name" placeholder="Nom">
             </div>
         </div>
         </form>
@@ -28,15 +24,15 @@
 export default {
     data: function(){
         return {
-            record : {
+            userId: "",
+            record: {
                 "name": "",
-                "user_id":"",
             }
         }
     },
     methods: {
         validateForm(){
-            this.record = this.$parent.user.id;
+            this.userId = this.$parent.user.id;
             // this.user.firstName = 'john';
             // this.user.lastName = 'donny';
             // this.user.birthDate = '1991-10-10';
@@ -48,16 +44,20 @@ export default {
             if(this.validateForm()){
                 console.log('creating medical record');
                 console.log(this.record);
-            // this.$axios.post("http://localhost:8080/api/v1/user", this.dossier)
-            //     .then((res) => {
-            //         this.$emit('close-modal');
-            //         this.$parent.getpatients();
-            //     })
-            //     .catch((err) => {
-            //         console.log('Erreur création dossier '+err);
-            //     });
+                let data = {
+                  userId: this.userId,
+                  name: this.record.name
+                }
+                this.$axios.post('http://localhost:8080/api/v1/medicalRecord/', data)
+                  .then((res) => {
+                      this.$emit('close-modal');
+                      this.$parent.fetchUser();
+                  })
+                  .catch((err) => {
+                      console.log('Erreur création dossier '+err);
+                  });
             }
-        }
+        },
     }
 }
 </script>

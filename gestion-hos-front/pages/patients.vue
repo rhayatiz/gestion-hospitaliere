@@ -21,10 +21,11 @@
           <table class="table table-sm">
             <thead>
               <tr>
-                <th scope="col">Numéro patient</th>
+                <th scope="col">#</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
                 <th scope="col">Date de naissance</th>
+                <th scope="col">Role</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -34,6 +35,7 @@
                 <td>{{user.lastName}}</td>
                 <td>{{user.firstName}}</td>
                 <td>{{user.birthDate[2]+'/'+user.birthDate[1]+'/'+user.birthDate[0]}}</td>
+                <td>{{user.role.name}}</td>
                 <td>
                   <nuxt-link class="d-flex flex-column btn-sm btn" :to="{ name: 'patient', query: { id : user.id  }}">
                     <i class="fas fa-eye"></i>
@@ -66,13 +68,14 @@ export default {
     
     methods: {
       async getpatients(){
-        this.$axios.$get('http://localhost:8080/api/v1/user')
+        this.$axios.$get('http://localhost:8080/api/v1/user/')
         .then((response) => {
           console.log(response[0]);
           this.users = response;
         })
         .catch((err) => {
           console.log('Error while fetching patients');
+          console.log(err);
         });
       }
     },

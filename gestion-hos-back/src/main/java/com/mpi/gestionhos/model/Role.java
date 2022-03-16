@@ -1,5 +1,7 @@
 package com.mpi.gestionhos.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,38 +11,32 @@ public class Role {
 
     public Role(){}
 
-    public Role(String libelle) {
-        this.libelle = libelle;
+    public Role(String name) {
+        this.name = name;
     }
 
     @Id
-    @SequenceGenerator(
-            name = "role_sequence",
-            sequenceName = "role_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "role_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     public long id;
 
     public void setId(long id) {
         this.id = id;
     }
 
-    public String libelle;
+    @Column(name = "name")
+    public String name;
 
     public long getId() {
         return id;
     }
 
-    public String getLibelle() {
-        return libelle;
+    public String getName() {
+        return name;
     }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

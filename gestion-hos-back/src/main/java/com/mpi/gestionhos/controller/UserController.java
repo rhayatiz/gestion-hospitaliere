@@ -1,4 +1,4 @@
-package com.mpi.gestionhos;
+package com.mpi.gestionhos.controller;
 
 import com.mpi.gestionhos.model.User;
 import com.mpi.gestionhos.model.UserLoginRequestBody;
@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @PostMapping()
-    public void registerStudent(@RequestBody User u){
+    public void registerUser(@RequestBody User u){
         this.userService.createUser(u);
     }
 
@@ -31,17 +31,13 @@ public class UserController {
         System.out.println(id);
         Optional<User> u = this.userService.find((long) id);
         System.out.println(u.toString());
-        if(u.isPresent()){
-            return u.get();
-        }else{
-            return new User(
-                    "faker",
-                    "faker",
-                    "faker@mail.com",
-                    LocalDate.of(1976, 01, 01),
-                    "123+aze"
-            );
-        }
+        return u.get();
+    }
+
+//    TODO fix not working
+    @GetMapping("role/{roleName}")
+    public List<User> findByRole(@PathVariable String roleName){
+        return this.userService.findByRole(roleName);
     }
 
     @GetMapping()

@@ -1,0 +1,13 @@
+spring.datasource.url=jdbc:postgresql://localhost:5432/gestion-hospitaliere
+spring.datasource.username=postgres
+spring.datasource.password=123+aze
+spring.jpa.hibernate.ddl-auto=create-drop
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.properties.hibernate.format_sql=true
+
+server.error.include-message=always
+jwt.secret=gEst!0N+h0spltali-3re
+
+#CORS
+cors.allowedOrigin=http://localhost:3000

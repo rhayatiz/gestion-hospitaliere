@@ -1,4 +1,4 @@
-package com.mpi.gestionhos;
+package com.mpi.gestionhos.controller;
 
 import com.mpi.gestionhos.configuration.MyPasswordEncoder;
 import com.mpi.gestionhos.model.User;

@@ -85,7 +85,7 @@ export default {
     middleware: 'authenticated',
     data(){
         return {
-            showModal: false,
+            medicalRecord: false,
             dossiers: [],
             user: {
                 firstName: '',
@@ -96,14 +96,14 @@ export default {
         }
     },
     middleware: 'authenticated',
-    name: 'patients',
+    name: 'dossier',
     methods: {
-        fetchUser(){
-            let userId = this.$route.query.id; 
-            this.$axios.get('http://localhost:8080/api/v1/user/find/'+userId)
+        fetchMedicalRecord(){
+            let medicalRecordId = this.$route.query.id; 
+            this.$axios.get('http://localhost:8080/api/v1/medicalRecord/find/'+medicalRecordId)
                 .then((res) => {
                     console.log(res.data);
-                    this.user = res.data;
+                    this.medicalRecord = res.data;
                 })
                 .catch((err) => {
                     console.log(err);
@@ -111,13 +111,8 @@ export default {
         }
     },
     mounted: function() {
-        this.fetchUser();
+        this.fetchDossier();
     },
-    computed: {
-        userBirthDate: function(){
-            return this.user.birthDate.reverse().join('/');
-        }
-    }
 
 }
 </script>

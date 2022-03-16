@@ -22,7 +22,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="inputAddress">N°Sécurité sociale</label>
-                <input type="text" class="form-control" v-model="user.securiteSociale">
+                <input type="text" class="form-control" v-model="user.numSecu">
             </div>
         </div>
         
@@ -56,9 +56,19 @@
             </div>
             <div class="form-group col-md-6">
             <label for="inputState">Code postal</label>
-            <input type="text" class="form-control" v-model="user.zipCode" placeholder="Code postal">
+            <input type="text" class="form-control" v-model="user.zipcode" placeholder="Code postal">
             </div>
         </div>
+        
+        <div class="form-row">
+            <div class="form-group col">
+            <label for="roleSelect">Role</label>
+            <select class="form-control" id="roleSelect" v-model="selectedRoleId" v-on:change="getSelectedRole()">
+              <option v-for="role in roles" :key="role.id" v-bind:value="role.id">{{role.name}}</option>
+            </select>
+            </div>
+        </div>
+
         </form>
       <!-- End Form -->
       <div class="row d-flex justify-content-around pb-4">
@@ -73,18 +83,21 @@
 export default {
     data: function(){
         return {
-            user : {
-                "firstName": "",
-                "lastName": "",
-                "birthDate": "",
-                "email": "",
-                "phone": "",
-                "password": "",
-                "securiteSociale":"",
-                "address":"",
-                "city":"",
-                "zipCode":"",
-            }
+          selectedRoleId: '',
+          roles: [],
+          user : {
+              "firstName": "",
+              "lastName": "",
+              "birthDate": "",
+              "email": "",
+              "phone": "",
+              "password": "",
+              "numSecu":"",
+              "address":"",
+              "city":"",
+              "zipcode":"",
+              "role":""
+          }
         }
     },
     methods: {
@@ -98,6 +111,7 @@ export default {
         },
         createUser(){
             if(this.validateForm()){
+            this.user.role = this.getSelectedRole();
             this.$axios.post("http://localhost:8080/api/v1/user", this.user)
                 .then((res) => {
                     this.$emit('close-modal');
@@ -107,7 +121,24 @@ export default {
                     console.log('Erreur création patient '+err);
                 });
             }
+        },
+        fetchRoles(){
+          this.$axios.$get('http://localhost:8080/api/v1/role/')
+          .then((response) => {
+            this.roles = response;
+          })
+          .catch((err) => {
+            console.log('Error while fetching patients'+err);
+          });
+        },
+        getSelectedRole(){
+          return this.roles.filter(role => {
+              return role.id == this.selectedRoleId
+            })[0]
         }
+    },
+    mounted: function(){
+      this.fetchRoles();
     }
 }
 </script>
